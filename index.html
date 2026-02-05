@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 50%, #ffd4e5 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .valentine-img {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ffb3d9;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            position: relative;
+            z-index: 10;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #ffc0cb, #ffb3d9);
+            color: #ff1493;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        #noBtn:hover {
+            background: linear-gradient(135deg, #ffb3d9, #ffc0cb);
+        }
+
+        .success-message {
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .success-img {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff69b4;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10%, 30% {
+                transform: scale(1.1);
+            }
+            20%, 40% {
+                transform: scale(1.05);
+            }
+        }
+
+        .success-message h2 {
+            color: #ff1493;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            color: #ff69b4;
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .screenshot-text {
+            color: #ff1493;
+            font-size: 0.9em;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Confetti Hearts */
+        .heart {
+            position: fixed;
+            font-size: 30px;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            button {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+
+            .valentine-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .success-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .success-message h2 {
+                font-size: 1.8em;
+            }
+
+            .success-message p {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.3em;
+            }
+
+            button {
+                padding: 10px 25px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div id="proposalContent">
+                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400&h=400&fit=crop" alt="Valentine Heart" class="valentine-img">
+                <h1>Will you be my Valentine? 💘</h1>
+                <div class="button-container" id="buttonContainer">
+                    <button id="yesBtn">Yes</button>
+                    <button id="noBtn">No</button>
+                </div>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=400&h=400&fit=crop" alt="Love" class="success-img">
+                <h2>Hehehe I knew it! 💕</h2>
+                <p>I love you so much 😘<br>My forever Valentine 💖</p>
+                <div class="screenshot-text">Screenshot this 😌💖</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const proposalContent = document.getElementById('proposalContent');
+        const successMessage = document.getElementById('successMessage');
+        const buttonContainer = document.getElementById('buttonContainer');
+
+        // No button text progression
+        const noTexts = [
+            "No",
+            "Are you sure?",
+            "Think again 🤔",
+            "Surely no? 😳",
+            "Last chance 🥺",
+            "Really no? 💔"
+        ];
+        let noClickCount = 0;
+
+        // Move No button to random position
+        function moveNoButton() {
+            const container = buttonContainer.getBoundingClientRect();
+            const button = noBtn.getBoundingClientRect();
+            
+            // Calculate safe boundaries
+            const maxX = container.width - button.width - 20;
+            const maxY = container.height - button.height - 20;
+            
+            // Generate random position
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // No button click handler
+        noBtn.addEventListener('click', function() {
+            noClickCount++;
+            
+            // Update text if not at the end
+            if (noClickCount < noTexts.length) {
+                noBtn.textContent = noTexts[noClickCount];
+            }
+            
+            // Move button to random position
+            moveNoButton();
+        });
+
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = ['❤️', '💕', '💖', '💗', '💘', '💝'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            document.body.appendChild(heart);
+
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Yes button click handler
+        yesBtn.addEventListener('click', function() {
+            // Hide proposal content
+            proposalContent.style.display = 'none';
+            
+            // Show success message
+            successMessage.classList.add('show');
+            
+            // Create confetti hearts
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+            
+            // Continue creating hearts for effect
+            const heartInterval = setInterval(createHeart, 300);
+            
+            // Stop after 10 seconds
+            setTimeout(() => {
+                clearInterval(heartInterval);
+            }, 10000);
+        });
+
+        // Initialize No button position
+        window.addEventListener('load', function() {
+            noBtn.style.position = 'relative';
+            noBtn.style.left = '0';
+            noBtn.style.top = '0';
+        });
+    </script>
+</body>
+</html>
